@@ -537,6 +537,7 @@ class DatabaseSeeder extends Seeder
         // 15. Automatically seed 981 real stock items from September 2026 data if available
         if (file_exists(storage_path('app/stok_sept_2026/extracted_stock_data.json'))) {
             \Illuminate\Support\Facades\Artisan::call('stock:import-sept-2026');
+            \Illuminate\Support\Facades\Artisan::call('stock:link-images');
         }
     }
 }

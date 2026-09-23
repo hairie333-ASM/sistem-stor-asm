@@ -10,6 +10,7 @@ class StockItem extends Model
         'kad_no',
         'stock_code',
         'description',
+        'image_url',
         'category_id',
         'stock_group',
         'movement',
@@ -146,5 +147,42 @@ class StockItem extends Model
             'badge' => 'bg-emerald-100 text-emerald-800 border-emerald-300',
             'icon' => 'check-circle'
         ];
+    }
+
+    public function getDisplayImageAttribute(): ?string
+    {
+        if ($this->image_url) {
+            if (str_starts_with($this->image_url, 'http://') || str_starts_with($this->image_url, 'https://')) {
+                return $this->image_url;
+            }
+            return asset($this->image_url);
+        }
+
+        // Semak automatik jika wujud imej katalog sepadan
+        $code = $this->getCatalogCode();
+        if ($code && file_exists(public_path("images/stocks/{$code}.png"))) {
+            return asset("images/stocks/{$code}.png");
+        }
+
+        return null;
+    }
+
+    public function getCatalogCodeAttribute(): ?string
+    {
+        return $this->getCatalogCode();
+    }
+
+    public function getCatalogCode(): ?string
+    {
+        // Contoh: ASM-AT-A1 -> A1, ASM-AT-A1-T -> A1, ASM-AT-B20 -> B20
+        if (preg_match('/ASM-AT-([A-Z][0-9]+)/i', $this->stock_code, $matches)) {
+            return strtoupper($matches[1]);
+        }
+        return null;
+    }
+
+    public function getHasCatalogImageAttribute(): bool
+    {
+        return !is_null($this->display_image);
     }
 }

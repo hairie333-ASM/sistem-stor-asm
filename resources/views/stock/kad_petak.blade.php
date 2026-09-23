@@ -36,22 +36,29 @@
     </div>
 
     <!-- Top Card Details -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs mb-6">
-        <div>
-            <span class="text-slate-400 text-[10px] block font-bold uppercase">Perihal Stok:</span>
-            <span class="font-bold text-slate-900">{{ $stock->description }}</span>
-        </div>
-        <div>
-            <span class="text-slate-400 text-[10px] block font-bold uppercase">Unit Pengukuran:</span>
-            <span class="font-bold text-slate-900">{{ $stock->uom->name }} ({{ $stock->uom->code }})</span>
-        </div>
-        <div>
-            <span class="text-slate-400 text-[10px] block font-bold uppercase">Lokasi / Petak:</span>
-            <span class="font-mono font-bold text-blue-800">{{ $stock->defaultLocation->full_code ?? 'Lokasi Am' }}</span>
-        </div>
-        <div>
-            <span class="text-slate-400 text-[10px] block font-bold uppercase">Paras (Min/Nokok/Maks):</span>
-            <span class="font-bold text-slate-900">{{ $stock->min_level }} / {{ $stock->reorder_level }} / {{ $stock->max_level }}</span>
+    <div class="flex flex-col sm:flex-row gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs mb-6 items-center">
+        @if($stock->display_image)
+            <div class="w-20 h-20 bg-white rounded-lg border border-slate-300 p-1 flex-shrink-0 flex items-center justify-center">
+                <img src="{{ $stock->display_image }}" alt="{{ $stock->stock_code }}" class="max-h-full max-w-full object-contain">
+            </div>
+        @endif
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 flex-1 w-full">
+            <div>
+                <span class="text-slate-400 text-[10px] block font-bold uppercase">Perihal Stok:</span>
+                <span class="font-bold text-slate-900">{{ $stock->description }}</span>
+            </div>
+            <div>
+                <span class="text-slate-400 text-[10px] block font-bold uppercase">Unit Pengukuran:</span>
+                <span class="font-bold text-slate-900">{{ $stock->uom->name }} ({{ $stock->uom->code }})</span>
+            </div>
+            <div>
+                <span class="text-slate-400 text-[10px] block font-bold uppercase">Lokasi / Petak:</span>
+                <span class="font-mono font-bold text-blue-800">{{ $stock->defaultLocation->full_code ?? 'Lokasi Am' }}</span>
+            </div>
+            <div>
+                <span class="text-slate-400 text-[10px] block font-bold uppercase">Paras (Min/Nokok/Maks):</span>
+                <span class="font-bold text-slate-900">{{ $stock->min_level }} / {{ $stock->reorder_level }} / {{ $stock->max_level }}</span>
+            </div>
         </div>
     </div>
 

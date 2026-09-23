@@ -61,6 +61,8 @@ class StockRequestController extends Controller
                 'category_id' => $s->category_id,
                 'quantity' => (float)$s->current_quantity,
                 'uom' => $s->uom->code ?? 'UNIT',
+                'image_url' => $s->display_image,
+                'has_image' => $s->has_catalog_image,
             ];
         });
 

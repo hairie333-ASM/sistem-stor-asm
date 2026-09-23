@@ -33,21 +33,33 @@
         @forelse($items as $item)
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 hover:border-blue-400 hover:shadow-md transition flex flex-col justify-between">
             <div>
-                <div class="flex justify-between items-start mb-2">
-                    <span class="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                        {{ $item->stock_code }}
-                    </span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded {{ $item->stock_group === 'A' ? 'bg-purple-100 text-purple-800' : 'bg-slate-100 text-slate-700' }}">
-                        Kumpulan {{ $item->stock_group }}
-                    </span>
+                <div class="flex gap-3 mb-2">
+                    @if($item->display_image)
+                        <div class="w-14 h-14 flex-shrink-0 bg-slate-50 border border-slate-200 rounded-xl overflow-hidden p-1 flex items-center justify-center">
+                            <img src="{{ $item->display_image }}" alt="{{ $item->stock_code }}" class="w-full h-full object-contain">
+                        </div>
+                    @else
+                        <div class="w-14 h-14 flex-shrink-0 bg-slate-100 border border-slate-200 rounded-xl flex items-center justify-center text-xl text-slate-400">
+                            📦
+                        </div>
+                    @endif
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                                {{ $item->stock_code }}
+                            </span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded {{ $item->stock_group === 'A' ? 'bg-purple-100 text-purple-800' : 'bg-slate-100 text-slate-700' }}">
+                                Kumpulan {{ $item->stock_group }}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 leading-snug line-clamp-2">
+                            <a href="{{ route('stock-register.show', $item) }}" class="hover:text-blue-700 hover:underline">
+                                {{ $item->description }}
+                            </a>
+                        </h3>
+                        <div class="text-[11px] text-slate-500">{{ $item->category->name ?? 'Kategori Am' }}</div>
+                    </div>
                 </div>
-
-                <h3 class="font-bold text-slate-900 text-sm mb-1 leading-snug">
-                    <a href="{{ route('stock-register.show', $item) }}" class="hover:text-blue-700 hover:underline">
-                        {{ $item->description }}
-                    </a>
-                </h3>
-                <div class="text-[11px] text-slate-500 mb-3">{{ $item->category->name ?? 'Kategori Am' }}</div>
 
                 <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 mb-3">
                     <div>

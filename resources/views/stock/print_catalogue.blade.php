@@ -14,6 +14,7 @@
         <thead>
             <tr class="bg-slate-100 font-bold border-b border-slate-400 uppercase text-[10px]">
                 <th class="border border-slate-300 p-1.5 text-center w-8">Bil</th>
+                <th class="border border-slate-300 p-1.5 text-center w-12">Foto</th>
                 <th class="border border-slate-300 p-1.5 w-24">No. Kod</th>
                 <th class="border border-slate-300 p-1.5 w-20">No. Kad</th>
                 <th class="border border-slate-300 p-1.5">Perihal Stok</th>
@@ -35,8 +36,15 @@
             @endphp
             <tr class="hover:bg-slate-50">
                 <td class="border border-slate-300 p-1.5 text-center">{{ $idx + 1 }}</td>
-                <td class="border border-slate-300 p-1.5 font-mono font-bold">{{ $item->item_code }}</td>
-                <td class="border border-slate-300 p-1.5 font-mono">{{ $item->card_number ?? '-' }}</td>
+                <td class="border border-slate-300 p-1 text-center">
+                    @if($item->display_image)
+                        <img src="{{ $item->display_image }}" alt="{{ $item->stock_code }}" class="w-8 h-8 object-contain mx-auto">
+                    @else
+                        <span class="text-slate-300 text-xs">-</span>
+                    @endif
+                </td>
+                <td class="border border-slate-300 p-1.5 font-mono font-bold">{{ $item->stock_code ?? $item->item_code }}</td>
+                <td class="border border-slate-300 p-1.5 font-mono">{{ $item->kad_no ?? $item->card_number ?? '-' }}</td>
                 <td class="border border-slate-300 p-1.5 font-semibold text-slate-800">{{ $item->description }}</td>
                 <td class="border border-slate-300 p-1.5 text-[11px]">{{ $item->category->name ?? '-' }}</td>
                 <td class="border border-slate-300 p-1.5 text-center font-bold">{{ $item->stock_group }}</td>
@@ -50,7 +58,7 @@
         </tbody>
         <tfoot>
             <tr class="bg-slate-100 font-bold border-t-2 border-slate-400">
-                <td colspan="10" class="border border-slate-300 p-2 text-right uppercase text-[11px]">Jumlah Keseluruhan Nilai Stok Semasa:</td>
+                <td colspan="11" class="border border-slate-300 p-2 text-right uppercase text-[11px]">Jumlah Keseluruhan Nilai Stok Semasa:</td>
                 <td class="border border-slate-300 p-2 text-right font-mono text-sm">RM {{ number_format($totalVal, 2) }}</td>
             </tr>
         </tfoot>

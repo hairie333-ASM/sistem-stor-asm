@@ -33,9 +33,27 @@
             </div>
         </div>
 
-        <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs">
-            <!-- Col 1 -->
-            <div class="space-y-3">
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 text-xs">
+            <!-- Product Photo -->
+            <div class="lg:col-span-3 flex flex-col items-center justify-center p-4 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                @if($stock->display_image)
+                    <div class="w-32 h-32 bg-white rounded-xl border border-slate-200 p-2 shadow-inner flex items-center justify-center mb-2">
+                        <img src="{{ $stock->display_image }}" alt="{{ $stock->stock_code }}" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                        📸 Gambar Katalog
+                    </span>
+                @else
+                    <div class="w-32 h-32 bg-slate-100 rounded-xl border border-slate-200 flex flex-col items-center justify-center text-slate-400 mb-2">
+                        <span class="text-3xl mb-1">📦</span>
+                        <span class="text-[10px] text-slate-400">Tiada Gambar</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400">Rujuk stor fizikal</span>
+                @endif
+            </div>
+
+            <!-- Col 1: Details -->
+            <div class="lg:col-span-3 space-y-3">
                 <div>
                     <span class="text-slate-400 block uppercase text-[10px] font-bold">Perihal Stok:</span>
                     <span class="text-sm font-bold text-slate-900">{{ $stock->description }}</span>
@@ -55,7 +73,7 @@
             </div>
 
             <!-- Col 2: Storage Location Details -->
-            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="lg:col-span-3 space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
                 <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wider border-b border-slate-200 pb-1">
                     Lokasi Penyimpanan (AM 6.4)
                 </div>
@@ -80,7 +98,7 @@
             </div>
 
             <!-- Col 3: Stock Levels & Values -->
-            <div class="space-y-3 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+            <div class="lg:col-span-3 space-y-3 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
                 <div class="text-[11px] font-bold text-blue-900 uppercase tracking-wider border-b border-blue-200 pb-1">
                     Paras Stok & Nilai (AM 6.4)
                 </div>

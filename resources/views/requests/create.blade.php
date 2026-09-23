@@ -287,9 +287,18 @@
                                             <template x-for="stock in filteredStocks(item.searchQuery)" :key="stock.id">
                                                 <div 
                                                     @click="selectItem(index, stock)" 
-                                                    class="p-2 hover:bg-blue-50 cursor-pointer transition flex items-start justify-between space-x-2"
+                                                    class="p-2 hover:bg-blue-50 cursor-pointer transition flex items-center justify-between space-x-2.5"
                                                     :class="item.stock_item_id == stock.id ? 'bg-blue-50/80 border-l-4 border-blue-600 font-bold' : ''"
                                                 >
+                                                    <!-- Image Thumbnail -->
+                                                    <div class="w-10 h-10 rounded-lg bg-slate-50 border border-slate-200 flex-shrink-0 flex items-center justify-center overflow-hidden shadow-xs">
+                                                        <template x-if="stock.image_url">
+                                                            <img :src="stock.image_url" :alt="stock.description" class="w-full h-full object-contain p-0.5">
+                                                        </template>
+                                                        <template x-if="!stock.image_url">
+                                                            <span class="text-sm">📦</span>
+                                                        </template>
+                                                    </div>
                                                     <div class="space-y-0.5 flex-1 min-w-0">
                                                         <div class="flex items-center space-x-1.5 flex-wrap gap-y-1">
                                                             <span class="font-mono font-bold text-blue-700 bg-blue-100/70 px-1.5 py-0.5 rounded text-[10px]" x-text="stock.code"></span>
@@ -409,7 +418,16 @@
             <!-- Results List -->
             <div class="flex-1 overflow-y-auto p-4 divide-y divide-slate-100">
                 <template x-for="stock in filteredModalStocks()" :key="stock.id">
-                    <div class="py-2.5 flex items-center justify-between hover:bg-slate-50 px-3 rounded-lg transition space-x-3">
+                    <div class="py-2.5 flex items-center justify-between hover:bg-slate-50 px-3 rounded-xl transition space-x-3 border border-transparent hover:border-slate-200 mb-1">
+                        <!-- Image Thumbnail -->
+                        <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-200 flex-shrink-0 flex items-center justify-center overflow-hidden shadow-xs">
+                            <template x-if="stock.image_url">
+                                <img :src="stock.image_url" :alt="stock.description" class="w-full h-full object-contain p-1">
+                            </template>
+                            <template x-if="!stock.image_url">
+                                <span class="text-xl">📦</span>
+                            </template>
+                        </div>
                         <div class="space-y-1 flex-1 min-w-0">
                             <div class="flex items-center space-x-2">
                                 <span class="font-mono font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded text-[11px]" x-text="stock.code"></span>
@@ -424,7 +442,7 @@
                             <button 
                                 type="button" 
                                 @click="chooseFromModal(stock)" 
-                                class="px-3.5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-lg shadow-sm transition flex items-center space-x-1"
+                                class="px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-lg shadow-sm transition flex items-center space-x-1"
                             >
                                 <span>+</span>
                                 <span>Pilih Item</span>

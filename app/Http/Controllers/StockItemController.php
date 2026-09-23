@@ -55,6 +55,10 @@ class StockItemController extends Controller
             }
         }
 
+        if ($request->boolean('with_image')) {
+            $query->whereNotNull('image_url');
+        }
+
         $items = $query->orderBy('stock_code')->paginate(15)->withQueryString();
 
         $categories = StockCategory::all();
@@ -306,6 +310,8 @@ class StockItemController extends Controller
                 'category_id' => $s->category_id,
                 'quantity' => (float)$s->current_quantity,
                 'uom' => $s->uom->code ?? 'UNIT',
+                'image_url' => $s->display_image,
+                'has_image' => $s->has_catalog_image,
             ]);
 
         return response()->json($stocks);
