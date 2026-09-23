@@ -44,7 +44,7 @@ RUN { \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Salin fail definisi kebergantungan
-COPY composer.json composer.lock ./
+COPY composer.json composer.lock* ./
 
 # Pasang kebergantungan tanpa dev packages untuk saiz imej minimum
 RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist --optimize-autoloader
