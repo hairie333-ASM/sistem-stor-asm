@@ -1,0 +1,26 @@
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+!/storage/logs/.gitignore
+!/storage/framework/cache/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/views/.gitignore
+
+# Pastikan data stok sebenar 981 item tidak diabaikan
+!/storage/app/stok_sept_2026/extracted_stock_data.json
+
+# Local database file
+database/database.sqlite
+database/database.sqlite-shm
+database/database.sqlite-wal
+
+# OS files
+.DS_Store
+Thumbs.db
