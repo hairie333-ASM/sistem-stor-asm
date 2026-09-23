@@ -15,28 +15,20 @@ RUN apk add --no-cache \
     curl \
     git \
     unzip \
-    libpng-dev \
-    libxml2-dev \
-    libzip-dev \
-    postgresql-dev \
-    oniguruma-dev \
-    icu-dev \
-    freetype-dev \
-    libjpeg-turbo-dev
+    libpq
 
-# Pasang pemalam PHP berkanun untuk Laravel & PostgreSQL (Supabase)
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-        pdo \
-        pdo_pgsql \
-        pgsql \
-        mbstring \
-        xml \
-        bcmath \
-        opcache \
-        zip \
-        intl \
-        gd
+# Pasang pemalam PHP rasmi (pantas, pra-bina, cegah ralat memori OOM di Render)
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions \
+    pdo_pgsql \
+    pgsql \
+    mbstring \
+    xml \
+    bcmath \
+    opcache \
+    zip \
+    intl \
+    gd
 
 # Konfigurasi OPcache untuk prestasi maksimum di pengeluaran
 RUN { \

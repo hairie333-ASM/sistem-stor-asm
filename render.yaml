@@ -6,7 +6,7 @@ services:
     plan: free
     branch: main
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /login
+    healthCheckPath: /up
     envVars:
       - key: APP_NAME
         value: "Sistem Pengurusan Stor Kerajaan (ASM)"
