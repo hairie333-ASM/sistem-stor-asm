@@ -18,13 +18,17 @@ if [ ! -f /var/www/html/.env ]; then
     fi
 fi
 
-# 3. Pastikan Direktori Storage & Cache Diberikan Keizinan Sempurna
+# 3. Pastikan Direktori Storage, Cache & Database Diberikan Keizinan Sempurna
 mkdir -p /var/www/html/storage/framework/cache/data
 mkdir -p /var/www/html/storage/framework/sessions
 mkdir -p /var/www/html/storage/framework/views
 mkdir -p /var/www/html/storage/logs
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+mkdir -p /var/www/html/database
+touch /var/www/html/database/database.sqlite
+
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
+chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
+chmod 666 /var/www/html/database/database.sqlite || true
 
 # 4. Bersihkan sebarang cache bootstrap lapuk & jana penemuan pakej pengeluaran
 rm -f /var/www/html/bootstrap/cache/*.php
@@ -55,6 +59,11 @@ else
     php artisan migrate --force || true
     php artisan db:seed --force || true
 fi
+
+# Pastikan www-data mempunyai hak menulis penuh ke atas database.sqlite selepas migrasi
+chown -R www-data:www-data /var/www/html/database
+chmod -R 777 /var/www/html/database
+chmod 666 /var/www/html/database/database.sqlite || true
 
 # 8. Pengoptimuman Prestasi Pengeluaran (Production Caching)
 echo "Mengoptimumkan konfigurasi, laluan, dan paparan Blade..."
