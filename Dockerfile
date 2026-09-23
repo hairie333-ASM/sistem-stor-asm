@@ -52,8 +52,12 @@ RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist --opti
 # Salin keseluruhan kod aplikasi
 COPY . .
 
-# Konfigurasi Nginx, Supervisor dan Skrip Permulaan
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+# Bersihkan sebarang fail cache bootstrap tempatan
+RUN rm -f /var/www/html/bootstrap/cache/*.php
+
+# Konfigurasi Nginx untuk Alpine Linux (http.d), Supervisor dan Skrip Permulaan
+RUN rm -rf /etc/nginx/conf.d/* /etc/nginx/http.d/*
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh

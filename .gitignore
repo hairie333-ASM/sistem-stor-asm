@@ -13,6 +13,9 @@
 !/storage/framework/sessions/.gitignore
 !/storage/framework/views/.gitignore
 
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
 # Pastikan data stok sebenar 981 item tidak diabaikan
 !/storage/app/stok_sept_2026/extracted_stock_data.json
 
