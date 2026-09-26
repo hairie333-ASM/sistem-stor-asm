@@ -126,11 +126,11 @@
     <!-- 2. Main Horizontal Navigation Bar (Clean & Fully Responsive) -->
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
                 
                 <!-- Left: Official ASM Logo + Title Stack (Adaptive for Mobile) -->
-                <div class="flex items-center space-x-2 sm:space-x-3.5 shrink-0">
-                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2.5 sm:space-x-3.5 focus:outline-none group">
+                <div class="flex items-center space-x-2 sm:space-x-3.5 min-w-0">
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 sm:space-x-3.5 focus:outline-none group min-w-0">
                         <!-- Mobile Emblem Badge (< sm) -->
                         <div class="sm:hidden w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 p-1 flex items-center justify-center shrink-0 shadow-xs">
                             <img src="{{ asset('images/asm-logo-emblem.png') }}" alt="ASM" class="w-full h-full object-contain">
@@ -139,13 +139,14 @@
                         <img src="{{ asset('images/asm-logo-horizontal.png') }}" alt="Akademi Sains Malaysia" class="hidden sm:block h-8 sm:h-9 md:h-10 w-auto object-contain shrink-0">
                         
                         <div class="h-8 w-px bg-slate-300 hidden md:block"></div>
-                        <div>
-                            <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-emerald-800 transition">
+                        <div class="min-w-0">
+                            <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-emerald-800 transition truncate">
                                 <span class="sm:hidden">STOR KERAJAAN ASM</span>
                                 <span class="hidden sm:inline">SISTEM PENGURUSAN STOR KERAJAAN</span>
                             </div>
-                            <div class="text-[9px] sm:text-[11px] font-bold text-[#10754A] tracking-wider uppercase leading-tight">
-                                UNIT PENGURUSAN STOR (TPS AM 6.1 - AM 6.10)
+                            <div class="text-[9px] sm:text-[11px] font-bold text-[#10754A] tracking-wider uppercase leading-tight truncate">
+                                <span class="sm:hidden">TPS AM 6.1 – AM 6.10</span>
+                                <span class="hidden sm:inline">UNIT PENGURUSAN STOR (TPS AM 6.1 - AM 6.10)</span>
                             </div>
                         </div>
                     </a>
@@ -893,44 +894,47 @@
                     
                     <!-- Action CTA Button (Responsive) -->
                     @if($u->isPemohon())
-                        <a href="{{ route('requests.create') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
+                        <a href="{{ route('requests.create') }}" class="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
                             <span class="text-base font-bold leading-none">+</span>
-                            <span class="hidden xs:inline sm:inline">Mohon Stok</span>
-                            <span class="xs:hidden sm:hidden">Mohon</span>
+                            <span class="hidden sm:inline">Mohon Stok</span>
+                            <span class="sm:hidden font-bold">Mohon</span>
                         </a>
                     @elseif($u->isPegawaiPenerima())
-                        <a href="{{ route('receiving.create') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
+                        <a href="{{ route('receiving.create') }}" class="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
                             <span class="text-base font-bold leading-none">+</span>
-                            <span>Terima Stok</span>
+                            <span class="hidden sm:inline">Terima Stok</span>
+                            <span class="sm:hidden font-bold">Terima</span>
                         </a>
                     @elseif($u->isUrusSetiaPelupusan())
-                        <a href="{{ route('disposal.create') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
+                        <a href="{{ route('disposal.create') }}" class="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
                             <span class="text-base font-bold leading-none">+</span>
-                            <span>Pelupusan</span>
+                            <span class="hidden sm:inline">Pelupusan</span>
+                            <span class="sm:hidden font-bold">Lupus</span>
                         </a>
                     @elseif($u->isUrusSetiaKehilangan())
-                        <a href="{{ route('loss.create') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
+                        <a href="{{ route('loss.create') }}" class="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
                             <span class="text-base font-bold leading-none">+</span>
-                            <span>Hilang</span>
+                            <span class="hidden sm:inline">Hapus Kira</span>
+                            <span class="sm:hidden font-bold">Hilang</span>
                         </a>
                     @else
-                        <a href="{{ route('requests.create') }}" class="px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
+                        <a href="{{ route('requests.create') }}" class="px-2 sm:px-4 py-1.5 sm:py-2 bg-[#10754A] hover:bg-[#0b5334] text-white rounded-lg text-xs sm:text-sm font-semibold shadow-xs transition flex items-center space-x-1 sm:space-x-1.5 shrink-0">
                             <span class="text-base font-bold leading-none">+</span>
                             <span class="hidden sm:inline">Pesanan Stok</span>
-                            <span class="sm:hidden">Pesanan</span>
+                            <span class="sm:hidden font-bold">Pesan</span>
                         </a>
                     @endif
 
-                    <!-- Notification Bell Icon -->
-                    <div class="relative hidden xs:block sm:block">
+                    <!-- Notification Bell Icon (Hidden on mobile < sm) -->
+                    <div class="relative hidden sm:block">
                         <button type="button" class="p-1.5 sm:p-2 text-slate-500 hover:text-slate-800 rounded-full hover:bg-slate-100 transition relative focus:outline-none">
                             <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
                             <span class="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 w-2 h-2 bg-[#10754A] rounded-full ring-2 ring-white"></span>
                         </button>
                     </div>
 
-                    <!-- User Profile Pill with Avatar & Dropdown (Desktop) -->
-                    <div class="relative" @click.outside="profileOpen = false">
+                    <!-- User Profile Pill with Avatar & Dropdown (Desktop / Tablet: sm+) -->
+                    <div class="relative hidden sm:block" @click.outside="profileOpen = false">
                         <button 
                             @click="profileOpen = !profileOpen" 
                             type="button" 
@@ -989,9 +993,9 @@
                         @click="mobileMenuOpen = !mobileMenuOpen" 
                         type="button" 
                         aria-label="Buka Menu Navigasi"
-                        class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 lg:hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 transition active:scale-95 shrink-0"
+                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 lg:hidden focus:outline-none focus:ring-2 focus:ring-emerald-500 transition active:scale-95 shrink-0"
                     >
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
                             <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
                         </svg>

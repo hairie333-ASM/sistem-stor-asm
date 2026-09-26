@@ -76,5 +76,29 @@ class HorizontalNavbarTest extends TestCase
         $response->assertSee('Borang Permohonan Stok', false);
         $response->assertSee('Log Keluar', false);
     }
+
+    public function test_header_and_stock_detail_mobile_spacing()
+    {
+        $pegawaiStor = User::whereHas('role', fn($q) => $q->where('name', 'pegawai_stor'))->first();
+        if (!$pegawaiStor) {
+            $pegawaiStor = $this->admin;
+        }
+
+        $stock = \App\Models\StockItem::first();
+
+        $response = $this->actingAs($pegawaiStor)->get(route('stock.show', $stock));
+        $response->assertStatus(200);
+
+        // Header compactness
+        $response->assertSee('TPS AM 6.1 – AM 6.10', false);
+        $response->assertSee('Pesan', false);
+
+        // Bahagian B responsive header and table
+        $response->assertSee('BAHAGIAN B', false);
+        $response->assertSee('LEJAR TRANSAKSI STOK & BAKI (KEW.PS-3)', false);
+        $response->assertSee('min-w-[980px]', false);
+        $response->assertSee('Tatal mendatar untuk melihat kesemua 11 kolum transaksi', false);
+    }
 }
+
 

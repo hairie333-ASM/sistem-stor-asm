@@ -151,7 +151,7 @@
     <!-- 1. TABLE VIEW -->
     <div x-show="viewMode === 'table'" class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
+            <table class="w-full text-left text-xs min-w-[950px]">
                 <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-[10px] tracking-wider">
                     <tr>
                         <th class="py-3 px-3 text-center w-14">Gambar</th>

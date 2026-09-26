@@ -23,12 +23,12 @@
 
     <!-- KEW.PS-3 BAHAGIAN A: BUTIRAN STOK -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="bg-slate-900 text-white px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span class="px-2 py-0.5 rounded bg-blue-800 text-blue-200 font-bold text-xs">BAHAGIAN A</span>
-                <h3 class="text-sm font-bold tracking-wide">MAKLUMAT KAWALAN & PENENTUAN PARAS STOK</h3>
+        <div class="bg-slate-900 text-white px-4 sm:px-6 py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4">
+            <div class="flex items-center space-x-2.5 sm:space-x-3">
+                <span class="px-2.5 py-1 rounded bg-blue-800 text-blue-200 font-bold text-xs shrink-0 tracking-wider">BAHAGIAN A</span>
+                <h3 class="text-xs sm:text-sm font-bold tracking-wide text-white">MAKLUMAT KAWALAN & PENENTUAN PARAS STOK</h3>
             </div>
-            <div class="text-xs text-amber-400 font-mono font-bold">
+            <div class="text-xs text-amber-400 font-mono font-bold shrink-0">
                 NO. KAD: {{ $stock->kad_no ?? 'KAD-' . $stock->id }}
             </div>
         </div>
@@ -126,75 +126,88 @@
 
     <!-- KEW.PS-3 BAHAGIAN B: TRANSAKSI LEJAR -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="bg-slate-900 text-white px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span class="px-2 py-0.5 rounded bg-emerald-800 text-emerald-200 font-bold text-xs">BAHAGIAN B</span>
-                <h3 class="text-sm font-bold tracking-wide">LEJAR TRANSAKSI STOK & BAKI (KEW.PS-3)</h3>
+        <!-- Header Bahagian B (Spacious & Responsive) -->
+        <div class="bg-slate-900 text-white px-4 sm:px-6 py-3.5 sm:py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2.5 sm:gap-4">
+            <div class="flex items-center space-x-2.5 sm:space-x-3">
+                <span class="px-2.5 py-1 rounded bg-emerald-800 text-emerald-200 font-bold text-xs shrink-0 tracking-wider">BAHAGIAN B</span>
+                <h3 class="text-xs sm:text-sm font-bold tracking-wide text-white">LEJAR TRANSAKSI STOK & BAKI (KEW.PS-3)</h3>
             </div>
-            <span class="text-xs text-slate-400">Baki dikira automatik tanpa boleh diubah suai secara manual</span>
+            <div class="flex items-center space-x-1.5 text-[11px] sm:text-xs text-slate-300">
+                <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Baki dikira automatik tanpa boleh diubah suai secara manual</span>
+            </div>
+        </div>
+
+        <!-- Horizontal Scroll Notice for Mobile Screens -->
+        <div class="lg:hidden px-4 py-2 bg-emerald-50/70 border-b border-emerald-100 flex items-center justify-between text-[11px] text-emerald-900">
+            <div class="flex items-center space-x-1.5">
+                <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                <span>Tatal mendatar untuk melihat kesemua 11 kolum transaksi</span>
+            </div>
+            <span class="font-mono text-[10px] bg-emerald-200/80 text-emerald-900 px-2 py-0.5 rounded font-bold">KEW.PS-3</span>
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
+            <table class="w-full text-left text-xs border-collapse min-w-[980px]">
                 <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 uppercase text-[10px]">
                     <tr class="divide-x divide-slate-200">
-                        <th rowspan="2" class="py-2 px-3 text-center">Tarikh</th>
-                        <th rowspan="2" class="py-2 px-3">No. Rujukan</th>
-                        <th rowspan="2" class="py-2 px-3">Terima Daripada / Keluar Kepada</th>
-                        <th colspan="3" class="py-1 px-3 text-center bg-emerald-50 text-emerald-900 border-b border-slate-200">Terimaan</th>
-                        <th colspan="2" class="py-1 px-3 text-center bg-amber-50 text-amber-900 border-b border-slate-200">Keluaran</th>
-                        <th colspan="2" class="py-1 px-3 text-center bg-blue-50 text-blue-900 border-b border-slate-200">Baki Semasa</th>
-                        <th rowspan="2" class="py-2 px-3 text-center">T/Tangan Pegawai</th>
+                        <th rowspan="2" class="py-3 px-4 text-center whitespace-nowrap min-w-[105px]">Tarikh</th>
+                        <th rowspan="2" class="py-3 px-4 whitespace-nowrap min-w-[155px]">No. Rujukan</th>
+                        <th rowspan="2" class="py-3 px-4 min-w-[220px]">Terima Daripada / Keluar Kepada</th>
+                        <th colspan="3" class="py-2 px-3 text-center bg-emerald-50 text-emerald-900 border-b border-slate-200 font-extrabold tracking-wider">Terimaan</th>
+                        <th colspan="2" class="py-2 px-3 text-center bg-amber-50 text-amber-900 border-b border-slate-200 font-extrabold tracking-wider">Keluaran</th>
+                        <th colspan="2" class="py-2 px-3 text-center bg-blue-50 text-blue-900 border-b border-slate-200 font-extrabold tracking-wider">Baki Semasa</th>
+                        <th rowspan="2" class="py-3 px-4 text-center whitespace-nowrap min-w-[120px]">T/Tangan Pegawai</th>
                     </tr>
                     <tr class="divide-x divide-slate-200 text-[9px]">
-                        <th class="py-1 px-2 text-center bg-emerald-50">Kuantiti</th>
-                        <th class="py-1 px-2 text-right bg-emerald-50">Harga (RM)</th>
-                        <th class="py-1 px-2 text-right bg-emerald-50">Jumlah (RM)</th>
-                        <th class="py-1 px-2 text-center bg-amber-50">Kuantiti</th>
-                        <th class="py-1 px-2 text-right bg-amber-50">Jumlah (RM)</th>
-                        <th class="py-1 px-2 text-center bg-blue-50 font-bold">Kuantiti</th>
-                        <th class="py-1 px-2 text-right bg-blue-50 font-bold">Nilai (RM)</th>
+                        <th class="py-2 px-3 text-center bg-emerald-50/80 whitespace-nowrap min-w-[80px]">Kuantiti</th>
+                        <th class="py-2 px-3 text-right bg-emerald-50/80 whitespace-nowrap min-w-[85px]">Harga (RM)</th>
+                        <th class="py-2 px-3 text-right bg-emerald-50/80 whitespace-nowrap min-w-[90px]">Jumlah (RM)</th>
+                        <th class="py-2 px-3 text-center bg-amber-50/80 whitespace-nowrap min-w-[80px]">Kuantiti</th>
+                        <th class="py-2 px-3 text-right bg-amber-50/80 whitespace-nowrap min-w-[90px]">Jumlah (RM)</th>
+                        <th class="py-2 px-3 text-center bg-blue-50/80 font-bold whitespace-nowrap min-w-[80px]">Kuantiti</th>
+                        <th class="py-2 px-3 text-right bg-blue-50/80 font-bold whitespace-nowrap min-w-[90px]">Nilai (RM)</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 font-mono">
                     @forelse($transactions as $tItem)
                     @php $txn = $tItem->transaction; @endphp
                     <tr class="hover:bg-slate-50 transition divide-x divide-slate-100">
-                        <td class="py-2 px-3 text-center text-slate-600 whitespace-nowrap">{{ $txn->transaction_date->format('d/m/Y') }}</td>
-                        <td class="py-2 px-3 whitespace-nowrap font-sans font-medium text-slate-800">
+                        <td class="py-2.5 px-4 text-center text-slate-600 whitespace-nowrap">{{ $txn->transaction_date->format('d/m/Y') }}</td>
+                        <td class="py-2.5 px-4 whitespace-nowrap font-sans font-medium text-slate-800">
                             <div>{{ $txn->reference_number }}</div>
                             <span class="text-[9px] text-slate-400 font-mono">({{ $txn->kew_ps_type ?? $txn->transaction_type }})</span>
                         </td>
-                        <td class="py-2 px-3 font-sans text-slate-700">
+                        <td class="py-2.5 px-4 font-sans text-slate-700">
                             {{ $txn->party_name ?? $txn->store->name }}
                         </td>
 
                         <!-- Terimaan -->
                         @if($tItem->movement_type === 'IN')
-                            <td class="py-2 px-2 text-center font-bold text-emerald-800">{{ number_format($tItem->quantity, 0) }}</td>
-                            <td class="py-2 px-2 text-right text-slate-700">{{ number_format($tItem->unit_price, 2) }}</td>
-                            <td class="py-2 px-2 text-right font-medium text-emerald-900">{{ number_format($tItem->total_price, 2) }}</td>
-                            <td class="py-2 px-2 text-center text-slate-300">-</td>
-                            <td class="py-2 px-2 text-right text-slate-300">-</td>
+                            <td class="py-2.5 px-3 text-center font-bold text-emerald-800 whitespace-nowrap">{{ number_format($tItem->quantity, 0) }}</td>
+                            <td class="py-2.5 px-3 text-right text-slate-700 whitespace-nowrap">{{ number_format($tItem->unit_price, 2) }}</td>
+                            <td class="py-2.5 px-3 text-right font-medium text-emerald-900 whitespace-nowrap">{{ number_format($tItem->total_price, 2) }}</td>
+                            <td class="py-2.5 px-3 text-center text-slate-300">-</td>
+                            <td class="py-2.5 px-3 text-right text-slate-300">-</td>
                         @else
                         <!-- Keluaran -->
-                            <td class="py-2 px-2 text-center text-slate-300">-</td>
-                            <td class="py-2 px-2 text-right text-slate-300">-</td>
-                            <td class="py-2 px-2 text-right text-slate-300">-</td>
-                            <td class="py-2 px-2 text-center font-bold text-amber-800">{{ number_format($tItem->quantity, 0) }}</td>
-                            <td class="py-2 px-2 text-right font-medium text-amber-900">{{ number_format($tItem->total_price, 2) }}</td>
+                            <td class="py-2.5 px-3 text-center text-slate-300">-</td>
+                            <td class="py-2.5 px-3 text-right text-slate-300">-</td>
+                            <td class="py-2.5 px-3 text-right text-slate-300">-</td>
+                            <td class="py-2.5 px-3 text-center font-bold text-amber-800 whitespace-nowrap">{{ number_format($tItem->quantity, 0) }}</td>
+                            <td class="py-2.5 px-3 text-right font-medium text-amber-900 whitespace-nowrap">{{ number_format($tItem->total_price, 2) }}</td>
                         @endif
 
                         <!-- Baki Semasa (Calculated Ledger) -->
-                        <td class="py-2 px-2 text-center font-bold text-blue-900 bg-blue-50/30">
+                        <td class="py-2.5 px-3 text-center font-bold text-blue-900 bg-blue-50/30 whitespace-nowrap">
                             {{ number_format($tItem->balance_quantity_after, 0) }}
                         </td>
-                        <td class="py-2 px-2 text-right font-bold text-blue-900 bg-blue-50/30">
+                        <td class="py-2.5 px-3 text-right font-bold text-blue-900 bg-blue-50/30 whitespace-nowrap">
                             {{ number_format($tItem->balance_value_after, 2) }}
                         </td>
 
                         <!-- Officer -->
-                        <td class="py-2 px-3 text-center font-sans text-[10px] text-slate-600 whitespace-nowrap">
+                        <td class="py-2.5 px-4 text-center font-sans text-[10px] text-slate-600 whitespace-nowrap">
                             {{ $txn->user->name ?? 'Pegawai Stor' }}
                         </td>
                     </tr>
