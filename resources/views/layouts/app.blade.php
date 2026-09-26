@@ -129,22 +129,22 @@
             <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
                 
                 <!-- Left: Official ASM Logo + Title Stack (Adaptive for Mobile) -->
-                <div class="flex items-center space-x-2 sm:space-x-3.5 min-w-0">
-                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 sm:space-x-3.5 focus:outline-none group min-w-0">
+                <div class="flex items-center space-x-2 sm:space-x-3.5 shrink-0">
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2 sm:space-x-3.5 focus:outline-none group shrink-0">
                         <!-- Mobile Emblem Badge (< sm) -->
                         <div class="sm:hidden w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 p-1 flex items-center justify-center shrink-0 shadow-xs">
                             <img src="{{ asset('images/asm-logo-emblem.png') }}" alt="ASM" class="w-full h-full object-contain">
                         </div>
                         <!-- Desktop/Tablet Full Logo (sm+) -->
-                        <img src="{{ asset('images/asm-logo-horizontal.png') }}" alt="Akademi Sains Malaysia" class="hidden sm:block h-8 sm:h-9 md:h-10 w-auto object-contain shrink-0">
+                        <img src="{{ asset('images/asm-logo-horizontal.png') }}" alt="Akademi Sains Malaysia" class="hidden sm:block h-7 md:h-8 xl:h-9 w-auto object-contain shrink-0">
                         
-                        <div class="h-8 w-px bg-slate-300 hidden md:block"></div>
-                        <div class="min-w-0">
-                            <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-emerald-800 transition truncate">
+                        <div class="h-7 md:h-8 w-px bg-slate-300 hidden md:block shrink-0"></div>
+                        <div class="shrink-0">
+                            <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-emerald-800 transition whitespace-nowrap">
                                 <span class="sm:hidden">STOR KERAJAAN ASM</span>
                                 <span class="hidden sm:inline">SISTEM PENGURUSAN STOR KERAJAAN</span>
                             </div>
-                            <div class="text-[9px] sm:text-[11px] font-bold text-[#10754A] tracking-wider uppercase leading-tight truncate">
+                            <div class="text-[9px] sm:text-[11px] font-bold text-[#10754A] tracking-wider uppercase leading-tight whitespace-nowrap">
                                 <span class="sm:hidden">TPS AM 6.1 – AM 6.10</span>
                                 <span class="hidden sm:inline">UNIT PENGURUSAN STOR (TPS AM 6.1 - AM 6.10)</span>
                             </div>
@@ -153,7 +153,7 @@
                 </div>
 
                 <!-- Center: Horizontal Navigation Links with Dropdowns (Desktop Screens: lg+) -->
-                <div class="hidden lg:flex items-center space-x-1.5 text-xs sm:text-sm font-medium">
+                <div class="hidden lg:flex items-center space-x-1 xl:space-x-1.5 text-xs xl:text-sm font-medium">
 
                 @if($u->isPemohon())
                     {{-- 1. PEMOHON / STAFF --}}

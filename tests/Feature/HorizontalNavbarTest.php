@@ -110,7 +110,19 @@ class HorizontalNavbarTest extends TestCase
         $response->assertSee('Tatacara Pengurusan Stor AM 6.5', false);
         $response->assertSee('gap-2.5 sm:gap-4', false);
     }
+
+    public function test_system_name_is_fully_visible_without_truncation()
+    {
+        $response = $this->actingAs($this->pemohon)->get(route('dashboard'));
+        $response->assertStatus(200);
+
+        // Verify full system name and whitespace-nowrap (never truncated into SISTEM PENGUR...)
+        $response->assertSee('SISTEM PENGURUSAN STOR KERAJAAN', false);
+        $response->assertSee('UNIT PENGURUSAN STOR (TPS AM 6.1 - AM 6.10)', false);
+        $response->assertSee('whitespace-nowrap', false);
+    }
 }
+
 
 
 
