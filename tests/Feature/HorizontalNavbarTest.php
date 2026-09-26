@@ -56,4 +56,25 @@ class HorizontalNavbarTest extends TestCase
         $response->assertSee('Pentadbiran', false);
         $response->assertSee('Pengurusan Pengguna', false);
     }
+
+    public function test_mobile_drawer_renders_responsive_elements()
+    {
+        $response = $this->actingAs($this->pemohon)->get(route('dashboard'));
+        $response->assertStatus(200);
+
+        // Mobile emblem logo & hamburger button
+        $response->assertSee('asm-logo-emblem.png', false);
+        $response->assertSee('@click="mobileMenuOpen = !mobileMenuOpen"', false);
+
+        // Slide-over drawer container
+        $response->assertSee('x-show="mobileMenuOpen"', false);
+        $response->assertSee('mobileRoleOpen', false);
+        $response->assertSee('Menu Navigasi', false);
+
+        // Drawer items for pemohon
+        $response->assertSee('Papan Pemuka Pemohon', false);
+        $response->assertSee('Borang Permohonan Stok', false);
+        $response->assertSee('Log Keluar', false);
+    }
 }
+
