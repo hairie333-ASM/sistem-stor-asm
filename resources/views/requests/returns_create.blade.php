@@ -41,16 +41,16 @@
     }
 }">
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
             <div class="flex items-center space-x-2">
                 <span class="px-2.5 py-0.5 text-xs font-bold rounded bg-amber-100 text-amber-800 border border-amber-300">TPS AM 6.5</span>
                 <span class="text-xs text-slate-500">Kawalan Pengeluaran & Pemulangan</span>
             </div>
-            <h1 class="text-2xl font-bold text-slate-800 tracking-tight mt-1">Borang Pemulangan Stok</h1>
-            <p class="text-sm text-slate-600">Daftar pemulangan stok yang tidak digunakan, rosak, atau lebihan kepada stor berkaitan.</p>
+            <h1 class="text-xl sm:text-2xl font-bold text-slate-800 tracking-tight mt-1">Borang Pemulangan Stok</h1>
+            <p class="text-xs sm:text-sm text-slate-600">Daftar pemulangan stok yang tidak digunakan, rosak, atau lebihan kepada stor berkaitan.</p>
         </div>
-        <a href="{{ route('returns.index') }}" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition">
+        <a href="{{ route('returns.index') }}" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-medium rounded-lg transition shrink-0 self-start sm:self-auto">
             Kembali ke Senarai
         </a>
     </div>

@@ -5,7 +5,7 @@
 @section('page_description', 'Mengemukakan pesanan barangan stor mengikut prosedur Pekeliling Perbendaharaan AM 6.5')
 
 @section('content')
-<div class="max-w-5xl mx-auto bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm" x-data="{
+<div class="max-w-5xl mx-auto bg-white p-4 sm:p-8 rounded-2xl border border-slate-200 shadow-sm" x-data="{
     formType: '{{ $formType }}',
     catalogModalOpen: false,
     catalogSearchQuery: '',
@@ -128,7 +128,7 @@
 
         <!-- Form Selection Toggle (KEW.PS-7 only for Storekeepers / Admin) -->
         @if(auth()->user()->hasRole(['admin', 'pegawai_stor']))
-        <div class="flex space-x-2 border-b border-slate-200 pb-4">
+        <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4">
             <button type="button" @click="formType = 'KEW.PS-8'" :class="formType === 'KEW.PS-8' ? 'bg-blue-700 text-white font-bold' : 'bg-slate-100 text-slate-700'" class="px-4 py-2 rounded-lg text-xs transition">
                 Borang Individu (KEW.PS-8)
             </button>
@@ -137,13 +137,16 @@
             </button>
         </div>
         @else
-        <div class="border-b border-slate-200 pb-3 mb-2 flex items-center justify-between">
+        <div class="border-b border-slate-200 pb-3 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-4">
             <div class="flex items-center space-x-2">
-                <span class="px-2.5 py-1 text-xs font-bold rounded bg-blue-100 text-blue-800 border border-blue-200">
+                <span class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-50 text-blue-800 border border-blue-200 inline-block leading-snug">
                     Borang Permohonan Stok Individu / Bahagian (KEW.PS-8)
                 </span>
             </div>
-            <span class="text-[11px] text-slate-500">Tatacara Pengurusan Stor AM 6.5</span>
+            <div class="flex items-center space-x-1.5 text-xs text-slate-500">
+                <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Tatacara Pengurusan Stor AM 6.5</span>
+            </div>
         </div>
         @endif
 

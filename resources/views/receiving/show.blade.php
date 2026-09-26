@@ -23,16 +23,16 @@
 <div class="space-y-6">
 
     <!-- Document Summary Card -->
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-        <div class="flex justify-between items-start border-b border-slate-200 pb-4 mb-4">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 border-b border-slate-200 pb-4 mb-4">
             <div>
                 <span class="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
                     {{ $receiving->btb_number }}
                 </span>
                 <h3 class="text-base font-bold text-slate-900 mt-2">{{ $receiving->supplier_name }}</h3>
-                <div class="text-xs text-slate-500">{{ $receiving->supplier_address ?? 'Alamat tidak dinyatakan' }}</div>
+                <div class="text-xs text-slate-500 mt-0.5">{{ $receiving->supplier_address ?? 'Alamat tidak dinyatakan' }}</div>
             </div>
-            <div class="text-right">
+            <div class="text-left sm:text-right shrink-0">
                 <span class="text-[11px] font-bold px-3 py-1 rounded-full border {{ $receiving->status === 'ACCEPTED' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' : ($receiving->status === 'PARTIALLY_REJECTED' ? 'bg-rose-50 text-rose-800 border-rose-300' : 'bg-amber-50 text-amber-800 border-amber-300') }}">
                     {{ $receiving->status === 'ACCEPTED' ? '✓ DITERIMA (KEW.PS-1)' : ($receiving->status === 'PARTIALLY_REJECTED' ? '⚠️ PENOLAKAN SEBAHAGIAN (KEW.PS-2)' : '⏳ MENUNGGU PEMERIKSAAN') }}
                 </span>

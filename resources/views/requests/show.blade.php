@@ -28,19 +28,21 @@
 <div class="space-y-6">
 
     <!-- Requisition Overview Card -->
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-        <div class="flex justify-between items-start border-b border-slate-200 pb-4 mb-4">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 border-b border-slate-200 pb-4 mb-4">
             <div>
-                <span class="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
-                    {{ $stockRequest->request_number }}
-                </span>
-                <span class="ml-2 text-xs font-bold px-2 py-0.5 rounded {{ $stockRequest->form_type === 'KEW.PS-8' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800' }}">
-                    {{ $stockRequest->form_type }}
-                </span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                        {{ $stockRequest->request_number }}
+                    </span>
+                    <span class="text-xs font-bold px-2 py-0.5 rounded {{ $stockRequest->form_type === 'KEW.PS-8' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800' }}">
+                        {{ $stockRequest->form_type }}
+                    </span>
+                </div>
                 <h3 class="text-base font-bold text-slate-900 mt-2">{{ $stockRequest->purpose }}</h3>
-                <div class="text-xs text-slate-500">Bahagian / Unit: <strong>{{ $stockRequest->department }}</strong> | Stor: <strong>{{ $stockRequest->store->name }}</strong></div>
+                <div class="text-xs text-slate-500 mt-1">Bahagian / Unit: <strong>{{ $stockRequest->department }}</strong> | Stor: <strong>{{ $stockRequest->store->name }}</strong></div>
             </div>
-            <div class="text-right">
+            <div class="text-left sm:text-right shrink-0">
                 <span class="text-[11px] font-bold px-3 py-1 rounded-full border {{ $stockRequest->status === 'COMPLETED' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' : ($stockRequest->status === 'REJECTED' ? 'bg-rose-50 text-rose-800 border-rose-300' : 'bg-blue-50 text-blue-800 border-blue-300') }}">
                     {{ $stockRequest->status }}
                 </span>

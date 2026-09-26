@@ -99,6 +99,18 @@ class HorizontalNavbarTest extends TestCase
         $response->assertSee('min-w-[980px]', false);
         $response->assertSee('Tatal mendatar untuk melihat kesemua 11 kolum transaksi', false);
     }
+
+    public function test_request_create_header_mobile_spacing()
+    {
+        $response = $this->actingAs($this->pemohon)->get(route('requests.create'));
+        $response->assertStatus(200);
+
+        // Badge and subtitle spacing
+        $response->assertSee('Borang Permohonan Stok Individu / Bahagian (KEW.PS-8)', false);
+        $response->assertSee('Tatacara Pengurusan Stor AM 6.5', false);
+        $response->assertSee('gap-2.5 sm:gap-4', false);
+    }
 }
+
 
 
